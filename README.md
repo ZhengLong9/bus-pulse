@@ -32,6 +32,8 @@ PostgreSQL 18.6 Alpine. Exact frontend dependency resolution is committed in
 `apps/web/package-lock.json`.
 
 Read [architecture.md](docs/architecture.md) for the data flow and boundaries.
+See [COMMANDS.md](docs/COMMANDS.md) for commands used in this project, their effects,
+and approval considerations.
 Implement each issue on a focused branch, run relevant checks, and submit a PR
 into `main`. The project owner reviews and approves PRs before merge.
 

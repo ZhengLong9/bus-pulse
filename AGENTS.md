@@ -21,6 +21,16 @@ BusPulse is a learning-focused portfolio project.
 ## Project documentation
 Use `docs/MVP.md` for product scope and architecture decisions.
 
+### Command guide and approvals
+- Maintain `docs/COMMANDS.md` whenever running a non-trivial command, especially one requiring approval.
+- Record the exact command, tool, what it does, why BusPulse needs it, affected files/services, safety/reversibility, dangerous flags or side effects, and a simpler equivalent or common variation when relevant.
+- Keep entries concise and grouped by tool/category. Reuse an existing entry for an identical command; add new variants or changed effects as needed.
+- Include the working directory when it matters, and distinguish failed attempts from successful commands. Do not present troubleshooting attempts as established fixes.
+- Skip trivial navigation, directory listings, and basic file reads unless they explain an important workflow.
+- Document commands before execution when practical, and update outcomes afterward. Never record credentials or tokens; reference variables instead and explicitly mark any necessary redaction.
+- Before requesting approval, briefly explain in plain English what the command will do and its material side effects. The approval prompt must also explain the action.
+- End every PR description with a short section titled `Commands introduced in this PR`, linking relevant guide entries and noting material risks.
+
 ## Git workflow
 
 - Never implement a feature directly on `main`.
