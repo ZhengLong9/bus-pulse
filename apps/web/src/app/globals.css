@@ -1,0 +1,14 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172c28;
+  background: #f5f8f6;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 48rem; margin: 0 auto; padding: 6rem 1.5rem; }
+h1 { margin: 0.5rem 0 1rem; font-size: clamp(2.5rem, 8vw, 4.5rem); }
+p { line-height: 1.6; }
+.eyebrow { color: #286655; font-weight: 700; }
+.status { margin-top: 2rem; color: #4c605a; }
