@@ -44,6 +44,20 @@ Tool: Git. These commands affect the repository or its GitHub remote.
 | `git commit -m "docs: document commands and approval workflow"` | Record this guide, agent rules, README link, and PR-template section. | Local feature-branch history. | Can be corrected with a follow-up commit; publication is separate. | Choose a message describing the next documentation change. |
 | `git push` | Publish the documentation follow-up to the already tracked bootstrap branch. | GitHub feature branch and existing PR diff. | Network write; no force or merge. Verify the current branch first. | Explicitly name `origin chore/bootstrap-project`. |
 
+## Live-arrival proposal workflow
+
+Tool: Git and PowerShell. These entries extend the guide for the design-only live-arrival proposal.
+
+| Exact command | What it does and why BusPulse needed it | Affected files/services | Safety, flags, and side effects | Common variation |
+| --- | --- | --- | --- | --- |
+| `git log --oneline --max-count=4`; `git log --oneline --max-count=4 origin/main` | Review the current baseline and confirm PR #1 is in remote main; individual invocations. | Reads local commit/ref data. | Read-only; does not contact GitHub. Remote refs are current only after fetch. | `git log -1 --oneline`. |
+| `git fetch origin` | Download current refs/objects before starting the next issue. | Git object store and remote-tracking refs; contacts GitHub. | Does not merge or overwrite checked-out source. No prune or force flag. | `git fetch origin main` limits the requested branch. |
+| `git switch -c feature/live-arrivals origin/main` | Create the live-arrivals branch from the merged bootstrap baseline. | Local checkout/branch and its tracking configuration. | `-c` creates a branch; no remote write. Named base ensures the proposal starts from approved main. | Switch to an existing feature branch without `-c`. |
+| `git add docs/api-contract.md docs/lta-flow.md docs/COMMANDS.md` | Stage only the proposed contract, flow, and command-guide update. | Git index for three documentation files. | Reversible staging; no application code or secrets included. | Stage the three files separately. |
+| `git commit -m "docs: propose live-arrival API contract and LTA flow"` | Record the design proposal before implementation. | Local feature-branch history. | No remote or application runtime effect. | A follow-up commit can revise the proposal after review. |
+| `git push -u origin feature/live-arrivals` | Publish the design branch for review. | GitHub feature branch; sets upstream tracking. | External write; no force or merge. | `git push` after the correct upstream is established. |
+| `& .\.bootstrap\create-live-arrivals-proposal-pr.ps1` | Open a draft, documentation-only proposal PR, or reuse one already open for this branch. | PowerShell helper, Git credential helper, GitHub PR metadata. | External write; credentials stay in memory, local helper is ignored. Does not implement endpoints, read the LTA key, or merge. | Use GitHub's New pull request interface and select Draft. |
+
 ## npm: frontend dependencies and checks
 
 Tool: npm, Node.js, and package-provided tools. Working directory: `apps/web`.
